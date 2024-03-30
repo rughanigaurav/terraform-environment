@@ -48,7 +48,7 @@
 
 variable "region" {}
 variable "project_name" {}
-variable "environment" {}
+# variable "environment" {}
 
 
 variable "vpc_cidr" {}
