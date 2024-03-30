@@ -7,6 +7,10 @@ variable "private_subnet_az1_cidr" {}
 variable "private_subnet_az2_cidr" {}
 #variable "environment" {}
 variable "domain_name" {}
-variable "alternative_name" {
-  
-}
+variable "alternative_name" {}
+variable "public_subnet_az1_id" {}
+variable "public_subnet_az2_id" {}
+variable "internet_gateway" {}
+variable "vpc_id" {}
+variable "private_subnet_az1_id" {}
+variable "private_subnet_az2_id" {}
