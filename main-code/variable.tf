@@ -6,3 +6,7 @@ variable "public_subnet_az2_cidr" {}
 variable "private_subnet_az1_cidr" {}
 variable "private_subnet_az2_cidr" {}
 #variable "environment" {}
+variable "domain_name" {}
+variable "alternative_name" {
+  
+}
