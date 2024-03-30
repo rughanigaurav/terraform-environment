@@ -18,3 +18,11 @@ module "vpc" {
     private_subnet_az2_cidr     =   var.private_subnet_az2_cidr
   
 }
+
+module "acm" {
+
+    source                      = "../modules/acm"
+    domain_name                 = var.domain_name
+    alternative_name            = var.alternative_name
+  
+}
