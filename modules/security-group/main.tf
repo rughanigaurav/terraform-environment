@@ -1,6 +1,6 @@
 # terraform aws create security group
 resource "aws_security_group" "test_security_group" {
-  name        = "prolix-SG"
+  name        = "test"
   description = "Apply security to access servers"
   vpc_id      = var.vpc_id
   ingress {
