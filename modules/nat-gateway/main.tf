@@ -2,9 +2,8 @@
 
 resource "aws_eip" "eip_for_nat_gateway_az1" {
 
-    vpc = true
-
-    tags = {
+    domain = "vpc"
+   tags = {
       Name = "nat gateway for az1 eip"
     }
 }
@@ -14,7 +13,7 @@ resource "aws_eip" "eip_for_nat_gateway_az1" {
 
 resource "aws_eip" "eip_for_nat_gateway_az2" {
 
-    vpc = true
+    domain = "vpc"
 
     tags = {
       Name = "nat gateway for az2 eip"
@@ -56,12 +55,12 @@ resource "aws_route_table" "private_route_table_az1" {
   
   vpc_id = var.vpc_id # (called from VPC module output.tf file --> you need to create variable in this module)
 
-  route = {
+  route = [{
 
     cidr_block      = "0.0.0.0/0"
-    nat_gateway_id  = aws_nat_gateway.nat_gateway_az1.id
+    nat_gateway_id  = "aws_nat_gateway.nat_gateway_az1.id"
 
-  }
+  }]
 
   tags = {
 

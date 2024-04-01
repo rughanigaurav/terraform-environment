@@ -11,6 +11,13 @@ variable "alternative_name" {}
 variable "public_subnet_az1_id" {}
 variable "public_subnet_az2_id" {}
 variable "internet_gateway" {}
+variable "ROUTE" {
+  type = list(object({ cidr_block=string, gateway_id=string }))
+}
 variable "vpc_id" {}
 variable "private_subnet_az1_id" {}
 variable "private_subnet_az2_id" {}
+variable "project1_name" {}
+variable "project2_name" {}
+variable "certificate_arn" {}
+variable "test_security_group_id" {}
