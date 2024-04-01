@@ -8,7 +8,6 @@ provider "aws" {
 module "vpc" {
 
     source                      =   "../modules/vpc"
-    #environment                 =   var.environment
     region                      =   var.region
     project_name                =   var.project_name
     vpc_cidr                    =   var.vpc_cidr
