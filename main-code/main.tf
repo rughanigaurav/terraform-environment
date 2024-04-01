@@ -19,10 +19,50 @@ module "vpc" {
   
 }
 
+module "nat-gateway" {
+
+    source = "../modules/nat-gateway"
+    public_subnet_az1_id    = module.vpc.public_subnet_az1_id
+    public_subnet_az2_id    = module.vpc.public_subnet_az1_id
+    internet_gateway        = var.internet_gateway
+    vpc_id                  = module.vpc.vpc_id
+    private_subnet_az1_id   = var.private_subnet_az1_id
+    private_subnet_az2_id   = var.private_subnet_az2_id
+    ROUTE = var.ROUTE
+
+}
+
+module "security-group" {
+
+    source = "../modules/security-group"
+    vpc_id = module.vpc.vpc_id
+  
+}
+
 module "acm" {
 
     source                      = "../modules/acm"
     domain_name                 = var.domain_name
     alternative_name            = var.alternative_name
+  
+}
+
+module "alb" {
+
+    source = "../modules/alb"
+    project1_name = var.project1_name
+    project2_name = var.project2_name
+    public_subnet_az1_id = module.vpc.public_subnet_az1_id
+    public_subnet_az2_id = module.vpc.public_subnet_az2_id
+    vpc_id = module.vpc.vpc_id
+    certificate_arn = module.acm.certificate_arn
+    test_security_group_id = module.security-group.test_security_group_id
+ 
+}
+
+
+resource "aws_instance" "frontend" {
+
+    
   
 }
