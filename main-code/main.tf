@@ -60,8 +60,12 @@ module "alb" {
 }
 
 
-resource "aws_instance" "frontend" {
+module "ec2" {
 
-    
-  
+    source = "../modules/ec2"
+    instance_type = var.instance_type
+    ami = var.ami
+    public_subnet_az1_id = var.public_subnet_az1_id 
+    private_subnet_az1_id = var.private_subnet_az1_id
+    test_security_group_id = var.test_security_group_id
 }
