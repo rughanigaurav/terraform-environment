@@ -7,7 +7,7 @@ resource "aws_instance" "jump-server" {
     subnet_id = var.public_subnet_az1_id
 
     root_block_device {
-      volume_size = 20
+      volume_size = 30
       volume_type = gp2
     }
   
