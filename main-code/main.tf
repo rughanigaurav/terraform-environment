@@ -17,6 +17,7 @@ module "vpc" {
     private_subnet_az2_cidr     =   var.private_subnet_az2_cidr
   
 }
+
 module "nat-gateway" {
 
     source = "../modules/nat-gateway"
@@ -57,7 +58,6 @@ module "alb" {
     test_security_group_id = module.security-group.test_security_group_id
  
 }
-
 
 module "ec2" {
 
