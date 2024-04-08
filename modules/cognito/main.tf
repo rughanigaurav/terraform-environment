@@ -6,22 +6,27 @@ resource "aws_cognito_user_pool" "test_pool" {
 
     alias_attributes = [ "username", "email" ]
 
-    mfa_configuration = "Optional"
-    
+    mfa_configuration = "off"
+
     email_configuration {
       
-        email_sending_account = "Send email with Cognito"
+        email_sending_account = "COGNITO_DEFAULT"
         from_email_address = "no-reply@verificationemal.com"
-        reply_to_email_address = ""
             
     }
 
     username_configuration {
-      case_sensitive = true
+        case_sensitive = true
 
     }
-    
-    
+
+    account_recovery_setting {
+      recovery_mechanism {
+        name = "verified_email"
+        priority =1
+
+      }
+    }
     password_policy {
       
         minimum_length = 10
@@ -32,7 +37,6 @@ resource "aws_cognito_user_pool" "test_pool" {
         temporary_password_validity_days = 7
         
     }    
-
     schema {
       name = "email"
       attribute_data_type = "String"
@@ -75,9 +79,20 @@ resource "aws_cognito_user_pool" "test_pool" {
     }
 
     schema {
+        name = "custom:Role_Name"
+        attribute_data_type = "String"
+        mutable = false
+    }
+
+    schema {
         name = "email_verified"
         attribute_data_type = "String"
         mutable = true
+
+    }
+
+    admin_create_user_config {
+        allow_admin_create_user_only = false
 
     }
 

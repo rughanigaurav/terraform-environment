@@ -81,11 +81,13 @@ resource "aws_launch_configuration" "backend" {
 resource "aws_autoscaling_group" "test" {
 
     name = "${var.project1_name}-asg"
-    launch_configuration = aws_launch_configuration.frontend
+    launch_configuration = "$(aws_launch_configuration.frontend)"
     max_size = var.max_size
     min_size = var.min_size
     desired_capacity = var.desired_capacity
     health_check_grace_period = 300
+    health_check_type = "EC2"
+    force_delete = true
     vpc_zone_identifier = var.lb_subnet
     target_group_arns = [aws_lb_target_group.alb_target_group1]
 
@@ -98,16 +100,25 @@ resource "aws_autoscaling_group" "test" {
     "GroupTotalInstance"
     
     ]
+
+tag {
+
+      key = "Name"
+      value = "Backend-ASG"
+      propagate_at_launch = true
+    }
 
 }
 resource "aws_autoscaling_group" "test2" {
 
     name = "${var.project2_name}-asg"
-    launch_configuration = aws_launch_configuration.backend
+    launch_configuration = "$(aws_launch_configuration.backend.name)"
     max_size = var.max_size
     min_size = var.min_size
     desired_capacity = var.desired_capacity
+    health_check_type = "EC2"
     health_check_grace_period = 300
+    force_delete = true
     vpc_zone_identifier = var.lb_subnet
     target_group_arns = [aws_lb_target_group.alb_target_group1]
 
@@ -120,6 +131,13 @@ resource "aws_autoscaling_group" "test2" {
     "GroupTotalInstance"
     
     ]
+
+tag {
+
+      key = "Name"
+      value = "Backend-ASG"
+      propagate_at_launch = true
+    }
 
   
 }

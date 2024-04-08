@@ -15,7 +15,7 @@ resource "aws_db_instance" "db-instance" {
     
     instance_class = "${var.database-instance-class}"
     availability_zone = data.aws_availability_zones.available_zones.names[0]
-    identifier = "${var.database-instance-identifier}"
+    identifier = "my-postgres-db"
     db_subnet_group_name = aws_db_subnet_group.db-subnet-group
     multi_az = false
     vpc_security_group_ids = [ aws_security_group.security_group.id ]
@@ -24,8 +24,10 @@ resource "aws_db_instance" "db-instance" {
     allocated_storage = 20
     storage_type = "gp2"
     engine = "postgres"
-    engine_version = 15.5
+    engine_version = "15.5"
     performance_insights_enabled = false
     port = 3306
     publicly_accessible = true
+
+    skip_final_snapshot = true
 }
