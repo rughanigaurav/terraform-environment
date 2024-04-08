@@ -55,6 +55,17 @@ resource "aws_route_table" "private_route_table_az1" {
 
     cidr_block      = "0.0.0.0/0"
     nat_gateway_id  = "aws_nat_gateway.nat_gateway_az1.id"
+    carrier_gateway_id = ""
+    core_network_arn = ""
+    destination_prefix_list_id = ""
+    egress_only_gateway_id = ""
+    gateway_id = ""
+    ipv6_cidr_block = "::/0"
+    local_gateway_id = ""
+    network_interface_id = ""
+    transit_gateway_id = ""
+    vpc_endpoint_id = ""
+    vpc_peering_connection_id = ""
 
   }]
 
@@ -64,19 +75,27 @@ resource "aws_route_table" "private_route_table_az1" {
   }  
 
 }
-
-#Create route table for AZ2
-
 resource "aws_route_table" "private_route_table_az2" {
   
   vpc_id = var.vpc_id # (called from VPC module output.tf file --> you need to create variable in this module)
 
-  route = {
+  route = [{
 
     cidr_block      = "0.0.0.0/0"
-    nat_gateway_id  = aws_nat_gateway.eip_for_nat_gateway_az2.id
+    nat_gateway_id  = aws_nat_gateway.nat_gateway_az2.id
+    carrier_gateway_id = ""
+    destination_prefix_list_id = ""
+    core_network_arn = ""
+    egress_only_gateway_id = ""
+    gateway_id = ""
+    ipv6_cidr_block = "::/0"
+    local_gateway_id = ""
+    network_interface_id = ""
+    transit_gateway_id = ""
+    vpc_endpoint_id = ""
+    vpc_peering_connection_id = ""
 
-  }
+  }]
 
   tags = {
 

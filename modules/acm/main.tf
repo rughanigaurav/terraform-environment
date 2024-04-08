@@ -1,3 +1,19 @@
+# Required Variable for acm module
+
+variable "domain_name" {
+
+  type = string
+  default = "xyz.com"
+  
+}
+
+variable "alternative_name" {
+
+  type = string
+  default = "*.xyz.com"
+  
+}
+
 #Request certificate from AWS for testing
  resource "aws_acm_certificate" "acm_certificate" {
 

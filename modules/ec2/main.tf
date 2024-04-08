@@ -8,7 +8,7 @@ resource "aws_instance" "jump-server" {
 
     root_block_device {
       volume_size = 30
-      volume_type = gp2
+      # volume_type = gp2
     }
   
   tags = {
@@ -19,7 +19,7 @@ resource "aws_instance" "Frontend-S1" {
 
     ami = var.ami
     instance_type = var.instance_type
-    security_groups = var.aws_security_group.test_security_group_id
+    security_groups = var.security_group
     key_name = "test"
     subnet_id = var.private_subnet_az1_id
     #user_data = file(install_app.sh)
@@ -42,12 +42,33 @@ resource "aws_instance" "Frontend-S1" {
     }
     root_block_device {
       volume_size = 30 
-      volume_type = gp2 
+      # volume_type = gp2
     }
   tags = {
     Name = "Frontend-S1"
   }
 
+}
+
+variable "ami" {
+
+  type = string
+  default = "ami-047bb4163c506cd98"
+
+}
+
+variable "public_subnet_az1_id" {
+
+  type = string
+  default = "10.0.0.0/24"
+ 
+}
+
+variable "private_subnet_az1_id" {
+
+  type = string
+  default = "10.0.2.0/24"
+  
 }
 
 resource "aws_instance" "Backend-S1" {
@@ -82,7 +103,7 @@ resource "aws_instance" "Backend-S1" {
     root_block_device { 
       
       volume_size = 30
-      volume_type = gp2
+      # volume_type = gp2
     }
 
 

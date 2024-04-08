@@ -1,2 +1,2 @@
-variable "domain_name" {}
-variable "alternative_name" {}
+# variable "domain_name" {}
+# variable "alternative_name" {}
