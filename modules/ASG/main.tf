@@ -79,6 +79,7 @@ resource "aws_launch_configuration" "backend" {
 resource "aws_autoscaling_group" "test" {
 
     name = "${var.project1_name}-asg"
+    launch_configuration = aws_launch_configuration.frontend
     max_size = var.max_size
     min_size = var.min_size
     desired_capacity = var.desired_capacity
@@ -100,6 +101,7 @@ resource "aws_autoscaling_group" "test" {
 resource "aws_autoscaling_group" "test2" {
 
     name = "${var.project2_name}-asg"
+    launch_configuration = aws_launch_configuration.backend
     max_size = var.max_size
     min_size = var.min_size
     desired_capacity = var.desired_capacity
