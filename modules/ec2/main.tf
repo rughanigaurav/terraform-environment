@@ -50,6 +50,27 @@ resource "aws_instance" "Frontend-S1" {
 
 }
 
+variable "ami" {
+
+  type = string
+  default = "ami-047bb4163c506cd98"
+
+}
+
+variable "public_subnet_az1_id" {
+
+  type = string
+  default = "10.0.0.0/24"
+ 
+}
+
+variable "private_subnet_az1_id" {
+
+  type = string
+  default = "10.0.2.0/24"
+  
+}
+
 resource "aws_instance" "Backend-S1" {
 
     ami = var.ami
