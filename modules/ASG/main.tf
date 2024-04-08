@@ -3,6 +3,7 @@ resource "aws_launch_configuration" "frontend" {
     image_id = var.image_id
     instance_type = var.instance_type
     key_name = var.key_name
+    security_groups = aws_security_group.test_security_group_id
     provisioner "remote-exec" {
 
       inline = [
@@ -44,6 +45,7 @@ resource "aws_launch_configuration" "backend" {
     instance_type = var.instance_type
     image_id = var.image_id
     key_name = var.key_name
+    security_groups = aws_security_group.test_security_group
 
     provisioner "remote-exec" {
 
