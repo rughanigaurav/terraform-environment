@@ -1,3 +1,81 @@
+resource "aws_launch_configuration" "frontend" {
+    name = "frontend-configuration"
+    image_id = var.image_id
+    instance_type = var.instance_type
+    key_name = var.key_name
+    provisioner "remote-exec" {
+
+      inline = [
+
+            "sudo apt update",
+            "sudo apt upgrade -y",
+            "sudo apt install supervisor -y",
+            "sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https",
+            "curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg",
+            "curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list",
+            "sudo apt update",
+            "sudo apt install caddy -y",
+            "sudo systemctl enable caddy",
+            "sudo systemctl start caddy",
+            "curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - &&",
+            "sudo apt update",
+            "sudo apt install nodejs -y"
+
+      ]
+    }
+
+    lifecycle {
+
+      create_before_destroy = true
+    }
+
+    root_block_device {
+
+      volume_size = 30
+      volume_type = gp2
+    }
+
+}
+
+
+resource "aws_launch_configuration" "backend" {
+
+    name = "backend-configuration"
+    instance_type = var.instance_type
+    image_id = var.image_id
+    key_name = var.key_name
+
+    provisioner "remote-exec" {
+
+        inline = [
+
+        "sudo apt update",
+        "sudo apt upgade -y",
+        "sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https",
+        "curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg",
+        "curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list",
+        "sudo apt update",
+        "sudo apt install caddy -y",
+        "sudo systemctl enable caddy",
+        "sudo systemctl start caddy",
+        "curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - &&",
+        "sudo apt update",
+        "sudo apt install nodejs -y",
+        "sudo apt install supervisor -y"
+
+        ]
+
+    }
+
+    root_block_device {
+
+      volume_size = 30
+      volume_type = gp2
+    }
+
+}
+
+
 resource "aws_autoscaling_group" "test" {
 
     name = "${var.project1_name}-asg"
@@ -19,7 +97,7 @@ resource "aws_autoscaling_group" "test" {
     ]
 
 }
-resource "aws_autoscaling_group" "test" {
+resource "aws_autoscaling_group" "test2" {
 
     name = "${var.project2_name}-asg"
     max_size = var.max_size
