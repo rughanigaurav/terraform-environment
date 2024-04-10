@@ -8,7 +8,6 @@ resource "aws_db_subnet_group" "db-subnet-group" {
       Name = "default-vpc-0217757ec8c0923c7"
     } 
 }
-
 data "aws_availability_zones" "available_zones" {}
 
 resource "aws_db_instance" "db-instance" {
