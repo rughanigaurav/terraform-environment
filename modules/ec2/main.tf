@@ -5,7 +5,6 @@ resource "aws_instance" "jump-server" {
     security_groups = [var.test_security_group_id]
     key_name = "test"
     subnet_id = var.public_subnet_az1_id
-
     root_block_device {
       volume_size = 30
       # volume_type = gp2
@@ -15,6 +14,7 @@ resource "aws_instance" "jump-server" {
     Name = "jump-server"
   }
 }
+
 resource "aws_instance" "Frontend-S1" {
 
     ami = var.ami
@@ -22,10 +22,11 @@ resource "aws_instance" "Frontend-S1" {
     security_groups = var.security_group
     key_name = "test"
     subnet_id = var.private_subnet_az1_id
+    iam_instance_profile = aws_iam_role.ssm_role.name
+  
     #user_data = file(install_app.sh)
 
     provisioner "remote-exec" {    #Installation of nodejs, caddy-server and supervisor service in frontend server
-
       inline = [ 
         "sudo apt update && sudo apt upgrade -y",
         "sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https",
@@ -38,7 +39,6 @@ resource "aws_instance" "Frontend-S1" {
         "sudo apt-get install -y nodejs",
         "sudo apt install supervisor -y"
        ]
-      
     }
     root_block_device {
       volume_size = 30 
@@ -49,7 +49,6 @@ resource "aws_instance" "Frontend-S1" {
   }
 
 }
-
 variable "ami" {
 
   type = string
@@ -70,7 +69,6 @@ variable "private_subnet_az1_id" {
   default = "10.0.2.0/24"
   
 }
-
 resource "aws_instance" "Backend-S1" {
 
     ami = var.ami
@@ -78,8 +76,9 @@ resource "aws_instance" "Backend-S1" {
     security_groups = var.test_security_group_id
     key_name = "test"
     subnet_id = var.private_subnet_az1_id
-    #user_data = file(install_app.sh)
+    iam_instance_profile = aws_iam_role.ssm_role.name
 
+    #user_data = file(install_app.sh)
     provisioner "remote-exec" { #Installation of nodejs, caddy-server and supervisor service in backend server
 
       inline = [ 
@@ -106,8 +105,7 @@ resource "aws_instance" "Backend-S1" {
       # volume_type = gp2
     }
 
-
     tags = {
       Name = "Backend-S1"
     }
-}
+} 

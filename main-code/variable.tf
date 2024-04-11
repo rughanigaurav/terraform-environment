@@ -11,7 +11,7 @@ variable "alternative_name" {}
 variable "public_subnet_az1_id" {}
 variable "public_subnet_az2_id" {}
 variable "internet_gateway" {}
-variable "ROUTE" {}
+# variable "ROUTE" {}
 variable "ami" {}
 variable "instance_type" {}
 variable "vpc_id" {}

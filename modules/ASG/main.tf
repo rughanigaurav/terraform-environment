@@ -24,7 +24,6 @@ resource "aws_launch_configuration" "frontend" {
 
       ]
     }
-
     lifecycle {
 
       create_before_destroy = true
@@ -38,7 +37,6 @@ resource "aws_launch_configuration" "frontend" {
 
 }
 
-
 resource "aws_launch_configuration" "backend" {
 
     name = "backend-configuration"
@@ -46,7 +44,6 @@ resource "aws_launch_configuration" "backend" {
     image_id = var.image_id
     key_name = var.key_name
     security_groups = aws_security_group.test_security_group
-
     provisioner "remote-exec" {
 
         inline = [
@@ -64,9 +61,7 @@ resource "aws_launch_configuration" "backend" {
         "sudo apt update",
         "sudo apt install nodejs -y",
         "sudo apt install supervisor -y"
-
         ]
-
     }
 
     root_block_device {
@@ -74,9 +69,7 @@ resource "aws_launch_configuration" "backend" {
       volume_size = 30
       volume_type = gp2
     }
-
 }
-
 
 resource "aws_autoscaling_group" "test" {
 
@@ -92,22 +85,18 @@ resource "aws_autoscaling_group" "test" {
     target_group_arns = [aws_lb_target_group.alb_target_group1]
 
     enabled_metrics = [
-    
     "GroupMinSize",
     "GroupMaxSize",
     "GroupDesiredCapacity",
     "GroupInServiceInstance",
     "GroupTotalInstance"
-    
     ]
-
 tag {
 
       key = "Name"
       value = "Backend-ASG"
       propagate_at_launch = true
     }
-
 }
 resource "aws_autoscaling_group" "test2" {
 
@@ -123,21 +112,16 @@ resource "aws_autoscaling_group" "test2" {
     target_group_arns = [aws_lb_target_group.alb_target_group1]
 
     enabled_metrics = [
-    
     "GroupMinSize",
     "GroupMaxSize",
     "GroupDesiredCapacity",
     "GroupInServiceInstance",
     "GroupTotalInstance"
-    
     ]
-
 tag {
 
       key = "Name"
       value = "Backend-ASG"
       propagate_at_launch = true
     }
-
-  
 }
