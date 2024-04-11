@@ -23,7 +23,7 @@ module "nat-gateway" {
     vpc_id                      = module.vpc.vpc_id
     private_subnet_az1_id       = var.private_subnet_az1_id
     private_subnet_az2_id       = var.private_subnet_az2_id
-    ROUTE                       = var.ROUTE
+    # ROUTE                       = var.ROUTE
 }
 
 module "security-group" {

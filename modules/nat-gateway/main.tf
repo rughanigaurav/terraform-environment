@@ -8,7 +8,6 @@ resource "aws_eip" "eip_for_nat_gateway_az1" {
 }
 
 #Create Elastic IP for AZ2
-
 resource "aws_eip" "eip_for_nat_gateway_az2" {
 
     domain = "vpc"
@@ -33,7 +32,6 @@ resource "aws_nat_gateway" "nat_gateway_az1" {
 }
 
 #Create Nat-Gateway for AZ2
-
 resource "aws_nat_gateway" "nat_gateway_az2" {
 
     allocation_id   = aws_eip.eip_for_nat_gateway_az2.id 
@@ -101,11 +99,9 @@ resource "aws_route_table" "private_route_table_az2" {
 
     Name = "Private route table az2"
   }  
-
 }
 
 #Private Route Table Association for AZ1
-
 resource "aws_route_table_association" "private_az1_association" {
   
     subnet_id = var.private_subnet_az1_id # (called from VPC module output.tf file --> you need to create variable in this module)
@@ -114,7 +110,6 @@ resource "aws_route_table_association" "private_az1_association" {
 }
 
 #Private Route Table Association for AZ2
-
 resource "aws_route_table_association" "private_az2_association" {
   
     subnet_id = var.private_subnet_az2_id # (called from VPC module output.tf file --> you need to create variable in this module)

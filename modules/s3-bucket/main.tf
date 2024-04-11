@@ -102,7 +102,6 @@ data "aws_iam_policy_document" "s3_bucket_lb_write" {
     }
   }
 
-
   statement {
     actions = [
       "s3:GetBucketAcl"
@@ -112,5 +111,3 @@ data "aws_iam_policy_document" "s3_bucket_lb_write" {
 
   }
 }
-
-

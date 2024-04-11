@@ -67,7 +67,6 @@ resource "aws_lb_listener" "alb_https_listener1" {
       type = "forward"
       target_group_arn = aws_lb_target_group.alb_target_group1.arn
     }
-
 }
 
 resource "aws_lb" "backend" {
@@ -103,10 +102,8 @@ resource "aws_lb_target_group" "alb_target_group2" {
         healthy_threshold = 5
     }
         lifecycle {
-
             create_before_destroy = false
         }
-
 }
 
 resource "aws_lb_listener" "alb_http_listener2" {
@@ -126,8 +123,6 @@ resource "aws_lb_listener" "alb_http_listener2" {
 
       }
     }
-
-
 }
 resource "aws_lb_listener" "alb_https_listener2" {
 
