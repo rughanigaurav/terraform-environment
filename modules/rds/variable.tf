@@ -50,13 +50,13 @@ variable "database-instance-identifier" {
     description = "Database instance class"
   
 }
-variable "domain-name" {
+variable "domain_name" {
     default = "xyz.com"
     description = "domain-name"
     type = string
   
 }
-variable "record-name" {
+variable "record_name" {
     default = "www"
     description = "staging.linxap.com"
     type = string
