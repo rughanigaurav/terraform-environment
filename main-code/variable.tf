@@ -22,3 +22,4 @@ variable "project2_name" {}
 variable "certificate_arn" {}
 variable "test_security_group_id" {}
 variable "security_group" {}
+variable "record_name" {}
