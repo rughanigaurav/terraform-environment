@@ -22,16 +22,16 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init
-        working-directory: ./modules
+        working-directory: ./main-code
       - name: Terraform Validate
         id: validate
         run: terraform validate
-        working-directory: ./modules
+        working-directory: ./main-code
       - name: Terraform Plan
         id: plan
         run: terraform plan
-        working-directory: ./modules
+        working-directory: ./main-code
       - name: Terraform Apply
         id: apply
         run: terraform apply
-        working-directory: ./modules
+        working-directory: ./main-code
