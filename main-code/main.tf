@@ -61,8 +61,6 @@ module "ec2" {
 
 module "rds" {
     source = "../modules/rds"
-    domain_name = var.domain_name
-    record_name = var.record_name
     ami = var.ami
     private_subnet_az1_cidr = var.private_subnet_az1_cidr
     private_subnet_az2_cidr = var.private_subnet_az2_cidr
