@@ -68,3 +68,4 @@ module "rds" {
     private_subnet_az2_cidr = var.private_subnet_az2_cidr
     public_subnet_az1_cidr = var.public_subnet_az1_cidr
     public_subnet_az2_cidr = var.private_subnet_az2_cidr
+}
