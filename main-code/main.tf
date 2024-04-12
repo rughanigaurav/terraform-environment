@@ -58,3 +58,7 @@ module "ec2" {
     test_security_group_id      = var.test_security_group_id
     security_group              = var.security_group
 }
+
+module "rds" {
+    source = "../modules/rds"
+}
