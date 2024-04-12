@@ -59,6 +59,6 @@ module "ec2" {
     security_group              = var.security_group
 }
 
-# module "rds" {
-#     source = "../modules/rds"
-# }
+module "rds" {
+    source = "../modules/rds"
+}
