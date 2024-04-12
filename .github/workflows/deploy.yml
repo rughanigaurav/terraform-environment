@@ -11,33 +11,26 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
 
 jobs:
-  terraform:
-    # name: terraform-ci-cd
+  build-infra:
+    name: terraform-ci-cd
     runs-on: ubuntu-latest
     steps:
-      - name: checkout code
+      - name: checkout
         uses: actions/checkout@v2
-
       - name: set up Terraform
         uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: ">= 5.0.0"
-
       - name: Terraform Init
         id: init
         run: terraform init
         working-directory: ./main-code
-
       - name: Terraform Validate
         id: validate
         run: terraform validate
         working-directory: ./main-code
-
       - name: Terraform Plan
         id: plan
         run: terraform plan
         working-directory: ./main-code
-
       - name: Terraform Apply
         id: apply
         run: terraform apply
