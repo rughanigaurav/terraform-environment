@@ -73,3 +73,5 @@ variable "aws_felb_service_account" {
     type = string
     default = ""
 }
+
+variable "vpc_id" {}

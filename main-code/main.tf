@@ -61,6 +61,7 @@ module "ec2" {
 
 module "rds" {
     source = "../modules/rds"
+    vpc_id = var.vpc_id
     ami = var.ami
     private_subnet_az1_cidr = var.private_subnet_az1_cidr
     private_subnet_az2_cidr = var.private_subnet_az2_cidr
