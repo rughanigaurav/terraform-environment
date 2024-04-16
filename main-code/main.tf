@@ -72,3 +72,33 @@ module "s3-bucket" {
     source = "../modules/s3-bucket"
   
 }
+
+module "ASG" {
+
+    source = "../modules/ASG"
+    max_size = var.max_size
+    min_size = var.min_size
+    project1_name = var.project1_name
+    project2_name = var.project2_name
+    desired_capacity = var.desired_capacity
+    lb_subnet = var.lb_subnet
+    key_name = var.key_name
+    instance_type = var.instance_type
+    image_id = var.image_id
+  
+}
+
+module "cognito" {
+
+    source = "../modules/cognito"
+    region = var.region
+    userpool_name = var.userpool_name
+    client_name = var.client_name
+
+}
+
+module "IAM" {
+
+    source = "../modules/IAM"
+  
+}

@@ -23,3 +23,11 @@ variable "certificate_arn" {}
 variable "test_security_group_id" {}
 variable "security_group" {}
 variable "record_name" {}
+variable "max_size" {}
+variable "min_size" {}
+variable "desired_capacity" {}
+variable "lb_subnet" {}
+variable "key_name" {}
+variable "image_id" {}
+variable "userpool_name" {}
+variable "client_name" {}
