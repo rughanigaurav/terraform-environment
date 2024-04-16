@@ -1,6 +1,10 @@
 variable "region" {}
+variable "instance_type" {}
 variable "project_name" {}
+variable "project1_name" {}
+variable "project2_name" {}
 variable "vpc_cidr" {}
+variable "vpc_id" {}
 variable "public_subnet_az1_cidr" {}
 variable "public_subnet_az2_cidr" {}
 variable "private_subnet_az1_cidr" {}
@@ -10,15 +14,10 @@ variable "domain_name" {}
 variable "alternative_name" {}
 variable "public_subnet_az1_id" {}
 variable "public_subnet_az2_id" {}
-variable "internet_gateway" {}
-# variable "ROUTE" {}
-variable "ami" {}
-variable "instance_type" {}
-variable "vpc_id" {}
 variable "private_subnet_az1_id" {}
 variable "private_subnet_az2_id" {}
-variable "project1_name" {}
-variable "project2_name" {}
+variable "internet_gateway" {}
+variable "ami" {}
 variable "certificate_arn" {}
 variable "test_security_group_id" {}
 variable "security_group" {}
