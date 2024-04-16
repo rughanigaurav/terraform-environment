@@ -4,9 +4,8 @@ resource "aws_cognito_user_pool" "test_pool" {
     username_attributes = ["email"]
     auto_verified_attributes = ["email"]
 
-    alias_attributes = [ "username", "email" ]
 
-    mfa_configuration = "off"
+    mfa_configuration = "OFF"
 
     email_configuration {
       
@@ -97,7 +96,7 @@ resource "aws_cognito_user_pool" "test_pool" {
     }
 
     schema {
-        name = "phone_number_verified"
+        name = "verified_number"
         attribute_data_type = "Number"
         mutable = true
     }

@@ -3,18 +3,15 @@ resource "aws_iam_role" "ssm_role" {
   name = "ssm-role"
   assume_role_policy = <<EOF
   {
-    version = "2012-10-17",
-    "statement" [  
+  "Version": "2012-10-17",
+  "Statement": [
     {
-        "Effect" : "Allow" ,
-        "Principal" : {
-            "Service" : "ec2.amazon.com"
-        },
-        "Action": "sts:AssumeRole"
-
+      "Effect": "Allow",
+      "Action": "ssm:*",
+      "Resource": "*"
     }
-    ]
-  }
+  ]
+}
 EOF  
 }
 
@@ -24,12 +21,12 @@ resource "aws_iam_policy" "ssm_policy" {
 
   policy = <<EOF
   {
-    version = "2012-10-17"
-    "Statement": [
+     "Version": "2012-10-17",
+     "Statement": [
       {
-        "Effect" : "Allow",
-        "Action" : "ssm:*",
-        "Resources" : "*"
+        "Effect": "Allow",
+        "Action": "ssm:*",
+        "Resource": "*"
       }
     ]
   }

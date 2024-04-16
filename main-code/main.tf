@@ -45,6 +45,21 @@ module "alb" {
     vpc_id                      = module.vpc.vpc_id
     certificate_arn             = module.acm.certificate_arn
     test_security_group_id      = module.security-group.test_security_group_id
+    max_size = var.max_size
+    min_size = var.min_size
+    desired_capacity = var.desired_capacity
+    lb_subnet = var.lb_subnet
+    key_name = var.key_name
+    instance_type = var.instance_type
+    image_id = var.image_id
+    security_group = var.security_group
+    # max_size                    = var.max_size
+    # min_size                    = var.min_size
+    # desired_capacity            = var.desired_capacity
+    # lb_subnet                   = var.lb_subnet
+    # key_name                    = var.key_name
+    # instance_type               = var.instance_type
+    # image_id                    = var.image_id
 }
 
 module "ec2" {
@@ -71,21 +86,6 @@ module "rds" {
 module "s3-bucket" {
 
     source = "../modules/s3-bucket"
-  
-}
-
-module "ASG" {
-
-    source = "../modules/ASG"
-    max_size = var.max_size
-    min_size = var.min_size
-    project1_name = var.project1_name
-    project2_name = var.project2_name
-    desired_capacity = var.desired_capacity
-    lb_subnet = var.lb_subnet
-    key_name = var.key_name
-    instance_type = var.instance_type
-    image_id = var.image_id
   
 }
 
