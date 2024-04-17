@@ -45,6 +45,7 @@ module "alb" {
     vpc_id                      = module.vpc.vpc_id
     certificate_arn             = module.acm.certificate_arn
     test_security_group_id      = module.security-group.test_security_group_id
+    
     max_size = var.max_size
     min_size = var.min_size
     desired_capacity = var.desired_capacity
