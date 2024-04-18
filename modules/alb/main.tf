@@ -175,8 +175,8 @@ resource "aws_lb_target_group" "alb_target_group2" {
         path = "/"
         timeout = 60
         matcher = 200
-        unhealthy_threshold = 5
-        healthy_threshold = 5
+        unhealthy_threshold = 2
+        healthy_threshold = 2
     }
         lifecycle {
             create_before_destroy = false
