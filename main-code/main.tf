@@ -45,16 +45,15 @@ module "alb" {
     vpc_id                      = module.vpc.vpc_id
     certificate_arn             = module.acm.certificate_arn
     test_security_group_id      = module.security-group.test_security_group_id
-    
-    max_size = var.max_size
-    min_size = var.min_size
-    desired_capacity = var.desired_capacity
-    lb_subnet = var.lb_subnet
-    key_name = var.key_name
-    instance_type = var.instance_type
-    frontendimage_id = var.frontendimage_id
-    backendimage_id = var.backendimage_id
-    security_group = var.security_group
+    max_size                    = var.max_size
+    min_size                    = var.min_size
+    desired_capacity            = var.desired_capacity
+    lb_subnet                   = var.lb_subnet
+    key_name                    = var.key_name
+    instance_type               = var.instance_type
+    frontendimage_id            = var.frontendimage_id
+    backendimage_id             = var.backendimage_id
+    security_group              = var.security_group
 }
 
 module "ec2" {
