@@ -12,5 +12,6 @@ variable "desired_capacity" {}
 variable "lb_subnet" {}
 variable "key_name" {}
 variable "instance_type" {}
-variable "image_id" {}
+variable "frontendimage_id" {}
+variable "backendimage_id" {}
 variable "security_group" {}

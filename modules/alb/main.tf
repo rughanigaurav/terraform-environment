@@ -216,7 +216,7 @@ resource "aws_lb_listener" "alb_https_listener2" {
 
 resource "aws_launch_configuration" "frontend" {
     name = "frontend-configuration"
-    image_id = var.image_id
+    image_id = var.frontendimage_id
     instance_type = var.instance_type
     key_name = var.key_name
     security_groups = [aws_security_group.test_security_group]
@@ -256,7 +256,7 @@ resource "aws_launch_configuration" "backend" {
 
     name = "backend-configuration"
     instance_type = var.instance_type
-    image_id = var.image_id
+    image_id = var.backendimage_id
     key_name = var.key_name
     security_groups = aws_security_group.test_security_group
     provisioner "remote-exec" {

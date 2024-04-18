@@ -26,6 +26,7 @@ variable "min_size" {}
 variable "desired_capacity" {}
 variable "lb_subnet" {}
 variable "key_name" {}
-variable "image_id" {}
+variable "frontendimage_id" {}
+variable "backendimage_id" {}
 variable "userpool_name" {}
 variable "client_name" {}
