@@ -1,9 +1,9 @@
-#!bin/bash
+# #!bin/bash
 
-set -eu
+# set -eu
 
-sudo apt update
+# sudo apt update
 
-sudo apt install terraform -y
+# sudo apt install terraform -y
 
-terraform --version
+# terraform --version
