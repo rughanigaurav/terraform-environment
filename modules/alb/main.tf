@@ -300,13 +300,13 @@ resource "aws_autoscaling_group" "test" {
     vpc_zone_identifier = var.lb_subnet
     target_group_arns = aws_lb_target_group.alb_target_group1
 
-    enabled_metrics = [
-    "GroupMinSize",
-    "GroupMaxSize",
-    "GroupDesiredCapacity",
-    "GroupInServiceInstance",
-    "GroupTotalInstance"
-    ]
+    # enabled_metrics = [
+    # "GroupMinSize",
+    # "GroupMaxSize",
+    # "GroupDesiredCapacity",
+    # "GroupInServiceInstance",
+    # "GroupTotalInstance"
+    # ]
 tag {
 
       key = "Name"
