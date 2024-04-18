@@ -52,7 +52,8 @@ module "alb" {
     lb_subnet = var.lb_subnet
     key_name = var.key_name
     instance_type = var.instance_type
-    image_id = var.image_id
+    frontendimage_id = var.frontendimage_id
+    backendimage_id = var.backendimage_id
     security_group = var.security_group
     # max_size                    = var.max_size
     # min_size                    = var.min_size
