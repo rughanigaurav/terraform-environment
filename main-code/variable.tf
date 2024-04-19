@@ -25,7 +25,9 @@ variable "max_size" {}
 variable "min_size" {}
 variable "desired_capacity" {}
 variable "lb_subnet" {}
-variable "key_name" {}
+variable "key_name" {
+    default = "test.pem"
+}
 variable "frontendimage_id" {}
 variable "backendimage_id" {}
 variable "userpool_name" {}
