@@ -2,7 +2,6 @@ provider "aws" {
     region  = var.region
     profile = "default"
 }
-
 module "vpc" {
     source                      =   "../modules/vpc"
     region                      =   var.region
@@ -67,14 +66,13 @@ module "ec2" {
 }
 
 module "rds" {
-    source = "../modules/rds"
-    vpc_id = var.vpc_id
-    
+    source                      = "../modules/rds"
+    vpc_id                      = var.vpc_id
     ami = var.ami
-    private_subnet_az1_cidr = var.private_subnet_az1_cidr
-    private_subnet_az2_cidr = var.private_subnet_az2_cidr
-    public_subnet_az1_cidr = var.public_subnet_az1_cidr
-    public_subnet_az2_cidr = var.private_subnet_az2_cidr
+    private_subnet_az1_cidr     = var.private_subnet_az1_cidr
+    private_subnet_az2_cidr     = var.private_subnet_az2_cidr
+    public_subnet_az1_cidr      = var.public_subnet_az1_cidr
+    public_subnet_az2_cidr      = var.private_subnet_az2_cidr
 }
 
 module "s3-bucket" {
