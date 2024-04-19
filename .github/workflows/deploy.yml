@@ -35,19 +35,79 @@
 #         run: terraform apply
 #         working-directory: ./main-code
 
+# name: Terraform CI/CD
+
+# on:
+#   push:
+#     branches:
+#       - dev
+#   pull_request:
+#     branches:
+#       - dev
+
+# env:
+#   AWS_ACCESS_KEY: ${{secrets.AWS_ACCESS_KEY}}
+#   AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+
+# jobs:
+#   terraform_apply:
+#     name: Apply Terraform
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+
+#       - name: Setup Terraform
+#         uses: hashicorp/setup-terraform@v1
+#         with:
+#           terraform_version: ">=1.0.0"
+
+#       - name: Terraform Init
+#         run: terraform init
+#         working-directory: ./main-code
+
+#       - name: Terraform Validate
+#         run: terraform validate
+#         working-directory: ./main-code
+
+#       - name: Terraform Plan
+#         run: terraform plan
+#         working-directory: ./main-code
+
+#       - name: Terraform Apply
+#         run: terraform apply -auto-approve
+#         working-directory: ./main-code
+
+#   terraform_destroy:
+#     name: Destroy Terraform
+#     runs-on: ubuntu-latest
+#     if: github.event_name == 'push' && contains(github.event.head_commit.message, 'destroy')
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+
+#       - name: Setup Terraform
+#         uses: hashicorp/setup-terraform@v1
+#         with:
+#           terraform_version: ">=1.0.0"
+
+#       - name: Terraform Init
+#         run: terraform init
+#         working-directory: ./main-code
+
+#       - name: Terraform Destroy
+#         run: terraform destroy -auto-approve
+#         working-directory: ./main-code
+
 name: Terraform CI/CD
 
 on:
   push:
     branches:
-      - dev
+      - main
   pull_request:
     branches:
-      - dev
-
-env:
-  AWS_ACCESS_KEY: ${{secrets.AWS_ACCESS_KEY}}
-  AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+      - main
 
 jobs:
   terraform_apply:
@@ -60,7 +120,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: ">=1.0.0"
+          terraform_version: 1.0.0
 
       - name: Terraform Init
         run: terraform init
@@ -75,8 +135,15 @@ jobs:
         working-directory: ./main-code
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        id: terraform_apply
         working-directory: ./main-code
+        run: |
+          terraform apply -auto-approve
+          echo "##[set-output name=status]success"
+
+      - name: Save apply status
+        if: always()
+        run: echo "TF_APPLY_STATUS=${{ job.steps.terraform_apply.outputs.status }}" >> $GITHUB_ENV
 
   terraform_destroy:
     name: Destroy Terraform
@@ -89,12 +156,18 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: ">=1.0.0"
+          terraform_version: 1.0.0
 
       - name: Terraform Init
         run: terraform init
         working-directory: ./main-code
 
       - name: Terraform Destroy
-        run: terraform destroy -auto-approve
-        working-directory: ./main-code
+        id: terraform_destroy
+        run: |
+          terraform destroy -auto-approve
+          echo "##[set-output name=status]success"
+
+      - name: Save destroy status
+        if: always()
+        run: echo "TF_DESTROY_STATUS=${{ job.steps.terraform_destroy.outputs.status }}" >> $GITHUB_ENV
