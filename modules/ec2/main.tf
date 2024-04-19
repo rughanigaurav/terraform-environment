@@ -4,6 +4,7 @@ resource "aws_instance" "jump-server" {
     instance_type = var.instance_type
     security_groups = [var.test_security_group_id]
     key_name = "test"
+    iam_instance_profile = aws_iam_policy.admin_policy
     subnet_id = var.public_subnet_az1_id
     root_block_device {
       volume_size = 30
@@ -22,7 +23,7 @@ resource "aws_instance" "Frontend-S1" {
     security_groups = var.security_group
     key_name = "test"
     subnet_id = var.private_subnet_az1_id
-    iam_instance_profile = aws_iam_role.ssm_role.name
+    iam_instance_profile = aws_iam_policy.admin_policy
   
     #user_data = file(install_app.sh)
 
@@ -76,7 +77,7 @@ resource "aws_instance" "Backend-S1" {
     security_groups = var.test_security_group_id
     key_name = "test"
     subnet_id = var.private_subnet_az1_id
-    iam_instance_profile = aws_iam_role.ssm_role.name
+    iam_instance_profile = aws_iam_policy.admin_policy
 
     #user_data = file(install_app.sh)
     provisioner "remote-exec" { #Installation of nodejs, caddy-server and supervisor service in backend server
