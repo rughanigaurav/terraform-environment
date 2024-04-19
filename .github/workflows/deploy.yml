@@ -64,19 +64,19 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: "./main-code"
+        working-directory: ./main-code
 
       - name: Terraform Validate
         run: terraform validate
-        working-directory: "./main-code"
+        working-directory: ./main-code
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: "./main-code"
+        working-directory: ./main-code
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: "./main-code"
+        working-directory: ./main-code
 
   terraform_destroy:
     name: Destroy Terraform
@@ -89,10 +89,12 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: 1.0.0
+          terraform_version: ">=1.0.0"
 
       - name: Terraform Init
         run: terraform init
+        working-directory: ./main-code
 
       - name: Terraform Destroy
         run: terraform destroy -auto-approve
+        working-directory: ./main-code
