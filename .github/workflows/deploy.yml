@@ -43,7 +43,7 @@ on:
       - dev
   pull_request:
     branches:
-      - main
+      - dev
 
 env:
   AWS_ACCESS_KEY: ${{secrets.AWS_ACCESS_KEY}}
