@@ -107,6 +107,3 @@ jobs:
       - name: Save destroy status
         if: always()
         run: echo "TF_DESTROY_STATUS=${{ job.steps.terraform_destroy.outputs.status }}" >> $GITHUB_ENV
-
-
-        hahahaha
